@@ -66,13 +66,13 @@ cd google-cse-key-service
 
 **2. Test locally (5 minutes)**
 ```bash
-./setup-local.sh
+./scripts/setup-local.sh
 npm start
 ```
 
 **3. Deploy to production (10-15 minutes)**
-- Follow [DEPLOYMENT.md](./DEPLOYMENT.md) for step-by-step instructions
-- Or use the automated deployment script: `deploy-complete.sh`
+- Follow [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) for step-by-step instructions
+- Or use the automated deployment script: `scripts/deploy-complete.sh`
 
 ---
 
@@ -80,12 +80,11 @@ npm start
 
 | Document | Description | Read Time |
 |----------|-------------|-----------|
-| **[QUICKSTART.md](./QUICKSTART.md)** | Test locally in 5 minutes | 5 min |
-| **[DEPLOYMENT.md](./DEPLOYMENT.md)** | Complete deployment guide | 15 min |
-| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | Technical deep dive | 20 min |
-| **[COSTS.md](./COSTS.md)** | Cost analysis & performance | 15 min |
-| **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** | Fix common issues | As needed |
-| **[INDEX.md](./INDEX.md)** | Navigation guide | 5 min |
+| **[QUICKSTART.md](./docs/QUICKSTART.md)** | Test locally in 5 minutes | 5 min |
+| **[DEPLOYMENT.md](./docs/DEPLOYMENT.md)** | Complete deployment guide | 15 min |
+| **[ARCHITECTURE.md](./docs/ARCHITECTURE.md)** | Technical deep dive | 20 min |
+| **[COSTS.md](./docs/COSTS.md)** | Cost analysis & performance | 15 min |
+| **[TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md)** | Fix common issues | As needed |
 
 ---
 
@@ -211,29 +210,32 @@ Tested on Oracle Cloud Always Free tier (Ampere A1 - 4 ARM CPUs):
 
 ```
 google-cse-key-service/
-├── 📄 README.md              # This file
-├── 📖 Documentation/
-│   ├── QUICKSTART.md         # 5-minute local setup
-│   ├── DEPLOYMENT.md         # Production deployment
-│   ├── ARCHITECTURE.md       # Technical details
-│   ├── COSTS.md             # Cost & performance analysis
-│   ├── TROUBLESHOOTING.md   # Fix common issues
-│   └── INDEX.md             # Documentation index
+├── 📄 README.md              # Project overview
+├── 📜 LICENSE                # MIT License
+├── 📋 CHANGELOG.md           # Version history
+├── 🤝 CONTRIBUTING.md        # How to contribute
 ├── 💻 Source Code/
 │   ├── src/
-│   │   ├── server.js        # Main KACLS API server
-│   │   ├── crypto.js        # AES-KW key wrapping
-│   │   ├── database.js      # SQLite + audit logs
-│   │   └── auth.js          # Google authentication
-│   ├── package.json         # Dependencies
-│   └── test.js              # Test suite
-├── 🚀 Deployment/
-│   ├── deploy-complete.sh   # Automated deployment
-│   ├── setup-local.sh       # Local setup
-│   ├── verify-deployment.sh # Verify production deployment
-│   └── .env.example         # Configuration template
-└── 📋 Configuration/
-    └── .gitignore           # Git ignore rules
+│   │   ├── server.js         # Main KACLS API server
+│   │   ├── crypto.js         # AES-KW key wrapping
+│   │   ├── database.js       # SQLite + audit logs
+│   │   └── auth.js           # Google authentication
+│   ├── package.json          # Dependencies
+│   └── test.js               # Test suite
+├── 🚀 Deployment Scripts/
+│   ├── scripts/
+│   │   ├── deploy-complete.sh    # Automated deployment
+│   │   ├── setup-local.sh        # Local setup
+│   │   └── verify-deployment.sh  # Verify deployment
+│   └── .env.example              # Config template
+└── 📚 Documentation/
+    ├── docs/
+    │   ├── QUICKSTART.md         # 5-min local setup
+    │   ├── DEPLOYMENT.md         # Production guide
+    │   ├── ARCHITECTURE.md       # Technical details
+    │   ├── COSTS.md              # Cost analysis
+    │   └── TROUBLESHOOTING.md    # Fix issues
+    └── .gitignore
 ```
 
 ---
@@ -253,7 +255,7 @@ google-cse-key-service/
 ```bash
 git clone https://github.com/yourusername/google-cse-key-service.git
 cd google-cse-key-service
-./setup-local.sh
+./scripts/setup-local.sh
 npm start
 ```
 
@@ -261,12 +263,12 @@ Visit: http://localhost:3000/healthz
 
 ### Step 3: Deploy to Production
 
-Follow the detailed guide in [DEPLOYMENT.md](./DEPLOYMENT.md)
+Follow the detailed guide in [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)
 
 Or use the automated script:
 ```bash
 # Upload to your Oracle VM
-scp deploy-complete.sh root@your-vm-ip:/root/
+scp scripts/deploy-complete.sh root@your-vm-ip:/root/
 
 # Run on VM
 bash /root/deploy-complete.sh
@@ -409,6 +411,21 @@ If this project helped you, please consider giving it a ⭐ on GitHub!
 
 ### Q: Can I use this with Business Standard?
 **A:** No. CSE requires Enterprise Plus or Education Plus/Standard editions.
+
+---
+
+## 🗂️ Repository Structure
+
+```
+├── src/              # Source code
+├── scripts/          # Deployment & setup scripts  
+├── docs/             # Documentation
+├── test.js           # Test suite
+├── package.json      # Dependencies
+└── .env.example      # Config template
+```
+
+For detailed documentation, see the [docs/](./docs/) directory.
 
 ---
 

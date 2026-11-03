@@ -74,3 +74,4 @@ coverage/
 # Build outputs
 dist/
 build/
+.DS_Store
