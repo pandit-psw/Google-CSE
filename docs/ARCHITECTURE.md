@@ -6,14 +6,14 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Google Workspace                          │
-│                                                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  Gmail   │  │  Drive   │  │   Docs   │  │  Sheets  │   │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘   │
-│       │             │              │              │          │
-│       └─────────────┴──────────────┴──────────────┘          │
-│                         │                                    │
+│                    Google Workspace                         │
+│                                                             │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
+│  │  Gmail   │  │  Drive   │  │   Docs   │  │  Sheets  │     │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘     │
+│       │             │              │              │         │
+│       └─────────────┴──────────────┴──────────────┘         │
+│                         │                                   │
 │                    HTTPS (TLS 1.3)                          │
 │                    KACLS Protocol                           │
 └────────────────────────┬────────────────────────────────────┘
@@ -23,51 +23,51 @@
                          ▼
 ┌─────────────────────────────────────────────────────────────┐
 │               Your Key Service (Oracle Cloud VM)            │
-│                                                              │
-│  ┌───────────────────────────────────────────────────────┐ │
-│  │                   nginx (Port 443)                     │ │
-│  │  - TLS termination (Let's Encrypt SSL)                │ │
-│  │  - Request routing                                     │ │
-│  │  - Security headers                                    │ │
-│  │  - Rate limiting                                       │ │
-│  └──────────────────────┬─────────────────────────────────┘ │
-│                         │                                    │
-│                         │ HTTP                               │
-│                         ▼                                    │
-│  ┌───────────────────────────────────────────────────────┐ │
-│  │              Node.js Express App (Port 3000)          │ │
-│  │                                                        │ │
-│  │  ┌──────────────────────────────────────────────────┐│ │
-│  │  │  Authentication Middleware                        ││ │
-│  │  │  - Verify Google JWT tokens                       ││ │
-│  │  │  - Extract user info (email, domain)              ││ │
-│  │  │  - Domain whitelist check                         ││ │
-│  │  └──────────────────────────────────────────────────┘│ │
-│  │                                                        │ │
-│  │  ┌──────────────────────────────────────────────────┐│ │
-│  │  │  API Endpoints                                    ││ │
-│  │  │  - POST /v1/wrappedKeys:wrap                      ││ │
-│  │  │  - POST /v1/wrappedKeys:unwrap                    ││ │
-│  │  │  - GET  /healthz                                  ││ │
-│  │  │  - GET  /v1/audit/logs (admin)                    ││ │
-│  │  └──────────────────────────────────────────────────┘│ │
-│  │                                                        │ │
-│  │  ┌──────────────────────────────────────────────────┐│ │
-│  │  │  Crypto Module (AES-KW RFC 3394)                  ││ │
-│  │  │  - Key wrapping (AES-256-KW)                      ││ │
-│  │  │  - Key unwrapping                                 ││ │
-│  │  │  - Hardware-accelerated (ARM AES)                 ││ │
-│  │  └──────────────────────────────────────────────────┘│ │
-│  │                                                        │ │
-│  │  ┌──────────────────────────────────────────────────┐│ │
-│  │  │  Database (SQLite)                                ││ │
-│  │  │  - KEK metadata storage                           ││ │
-│  │  │  - Audit log persistence                          ││ │
-│  │  │  - WAL mode for performance                       ││ │
-│  │  └──────────────────────────────────────────────────┘│ │
-│  └────────────────────────────────────────────────────────┘ │
-│                                                              │
-│  File System:                                                │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │                   nginx (Port 443)                    │  │
+│  │  - TLS termination (Let's Encrypt SSL)                │  │
+│  │  - Request routing                                    │  │
+│  │  - Security headers                                   │  │
+│  │  - Rate limiting                                      │  │
+│  └──────────────────────┬────────────────────────────────┘  │
+│                         │                                   │
+│                         │ HTTP                              │
+│                         ▼                                   │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │              Node.js Express App (Port 3000)          │  │
+│  │                                                       │  │
+│  │  ┌──────────────────────────────────────────────────┐ │  │
+│  │  │  Authentication Middleware                       │ │  │
+│  │  │  - Verify Google JWT tokens                      │ │  │
+│  │  │  - Extract user info (email, domain)             │ │  │
+│  │  │  - Domain whitelist check                        │ │  │
+│  │  └──────────────────────────────────────────────────┘ │  │
+│  │                                                       │  │
+│  │  ┌──────────────────────────────────────────────────┐ │  │
+│  │  │  API Endpoints                                   │ │  │
+│  │  │  - POST /v1/wrappedKeys:wrap                     │ │  │
+│  │  │  - POST /v1/wrappedKeys:unwrap                   │ │  │
+│  │  │  - GET  /healthz                                 │ │  │
+│  │  │  - GET  /v1/audit/logs (admin)                   │ │  │
+│  │  └──────────────────────────────────────────────────┘ │  │
+│  │                                                       │  │
+│  │  ┌──────────────────────────────────────────────────┐ │  │
+│  │  │  Crypto Module (AES-KW RFC 3394)                 │ │  │
+│  │  │  - Key wrapping (AES-256-KW)                     │ │  │
+│  │  │  - Key unwrapping                                │ │  │
+│  │  │  - Hardware-accelerated (ARM AES)                │ │  │
+│  │  └──────────────────────────────────────────────────┘ │  │
+│  │                                                       │  │
+│  │  ┌──────────────────────────────────────────────────┐ │  │
+│  │  │  Database (SQLite)                               │ │  │
+│  │  │  - KEK metadata storage                          │ │  │
+│  │  │  - Audit log persistence                         │ │  │
+│  │  │  - WAL mode for performance                      │ │  │
+│  │  └──────────────────────────────────────────────────┘ │  │
+│  └───────────────────────────────────────────────────────┘  │
+│                                                             │
+│  File System:                                               │
 │  - /opt/cse-key-service/app/data/keys.db (database)         │
 │  - /opt/cse-key-service/app/.env (Master KEK)               │
 │  - /opt/cse-key-service/app/logs/ (audit logs)              │
@@ -119,16 +119,16 @@
            ▼
    ┌─────────────────────────────────┐
    │ Authentication Verification     │
-   │ - Decode JWT                     │
-   │ - Verify signature               │
-   │ - Check domain                   │
-   │ - Extract user email             │
+   │ - Decode JWT                    │
+   │ - Verify signature              │
+   │ - Check domain                  │
+   │ - Extract user email            │
    └───────┬─────────────────────────┘
            │
            │ 4. Wrap DEK with your KEK
            │
            ▼
-   ┌─────────────────────────────────┐
+   ┌──────────────────────────-───────┐
    │ AES-KW Key Wrapping              │
    │                                  │
    │ Input:  DEK (32 bytes)           │
@@ -137,18 +137,18 @@
    │ Algorithm: AES-256-KW (RFC 3394) │
    │                                  │
    │ Output: Wrapped DEK (40 bytes)   │
-   └───────┬─────────────────────────┘
+   └───────┬───────────────────-──────┘
            │
            │ 5. Log operation
            │
            ▼
    ┌─────────────────────────────────┐
-   │ Audit Database                   │
-   │ - Timestamp                      │
-   │ - Operation: WRAP                │
-   │ - User: user@domain.com          │
-   │ - Key ID: kek_default_v1         │
-   │ - Success: true                  │
+   │ Audit Database                  │
+   │ - Timestamp                     │
+   │ - Operation: WRAP               │
+   │ - User: user@domain.com         │
+   │ - Key ID: kek_default_v1        │
+   │ - Success: true                 │
    └─────────────────────────────────┘
            │
            │ 6. Return wrapped DEK
@@ -165,13 +165,13 @@
            │    with encrypted content
            │
            ▼
-   ┌─────────────────────────────────┐
+   ┌──────────────────────────────────┐
    │ Google Storage                   │
    │ - Encrypted content (with DEK)   │
    │ - Wrapped DEK (encrypted with    │
    │   your KEK, Google can't decrypt)│
    │ - Metadata                       │
-   └─────────────────────────────────┘
+   └──────────────────────────────────┘
 ```
 
 ### Decryption Flow (Unwrap)
@@ -207,17 +207,17 @@
            │ 3. Your service authenticates user
            │
            ▼
-   ┌─────────────────────────────────┐
-   │ Authentication & Authorization  │
+   ┌──────────────────────────────────┐
+   │ Authentication & Authorization   │
    │ - Verify JWT token               │
    │ - Check user permissions         │
    │ - Validate key ID exists         │
-   └───────┬─────────────────────────┘
+   └───────┬──────────────────────────┘
            │
            │ 4. Unwrap DEK
            │
            ▼
-   ┌─────────────────────────────────┐
+   ┌──────────────────────────────────┐
    │ AES-KW Key Unwrapping            │
    │                                  │
    │ Input:  Wrapped DEK (40 bytes)   │
@@ -227,19 +227,19 @@
    │                                  │
    │ Output: DEK (32 bytes)           │
    │         OR error if KEK wrong    │
-   └───────┬─────────────────────────┘
+   └───────┬──────────────────────────┘
            │
            │ 5. Log operation
            │
            ▼
-   ┌─────────────────────────────────┐
+   ┌──────────────────────────────────┐
    │ Audit Database                   │
    │ - Timestamp                      │
    │ - Operation: UNWRAP              │
    │ - User: user@domain.com          │
    │ - Key ID: kek_default_v1         │
    │ - Success: true                  │
-   └─────────────────────────────────┘
+   └──────────────────────────────────┘
            │
            │ 6. Return unwrapped DEK
            │
@@ -253,11 +253,11 @@
            │ 7. Google decrypts content with DEK
            │
            ▼
-   ┌─────────────────────────────────┐
+   ┌──────────────────────────────────┐
    │ Decrypt Content                  │
    │ - Use DEK to decrypt             │
    │ - Render document to user        │
-   └─────────────────────────────────┘
+   └──────────────────────────────────┘
            │
            │ 8. User sees decrypted document
            │
@@ -274,12 +274,12 @@
 ┌─────────────────────────────────────────────────────────┐
 │                    Master KEK                           │
 │                 (256-bit AES key)                       │
-│                                                          │
+│                                                         │
 │  - Stored in .env file on your server                   │
 │  - Never transmitted                                    │
 │  - Never leaves your server                             │
 │  - BACKUP SECURELY OFFLINE                              │
-│                                                          │
+│                                                         │
 │  Purpose: Wraps/unwraps all DEKs                        │
 └───────────────────┬─────────────────────────────────────┘
                     │
@@ -288,12 +288,12 @@
 ┌─────────────────────────────────────────────────────────┐
 │              Data Encryption Keys (DEKs)                │
 │                 (256-bit AES keys)                      │
-│                                                          │
+│                                                         │
 │  - Generated by Google Workspace                        │
 │  - One per encrypted document/email                     │
 │  - Wrapped by your KEK before storage                   │
 │  - Google stores wrapped version only                   │
-│                                                          │
+│                                                         │
 │  Purpose: Encrypt individual documents/emails           │
 └───────────────────┬─────────────────────────────────────┘
                     │
@@ -301,11 +301,11 @@
                     ▼
 ┌─────────────────────────────────────────────────────────┐
 │                 Document Content                        │
-│                                                          │
+│                                                         │
 │  - Your actual Google Docs/Sheets/emails                │
 │  - Encrypted with DEK (AES-256-GCM)                     │
 │  - Stored in Google's infrastructure                    │
-│                                                          │
+│                                                         │
 │  Security: Two layers of encryption                     │
 │  1. DEK encrypts content (Google has wrapped DEK)       │
 │  2. KEK encrypts DEK (only you have KEK)                │
