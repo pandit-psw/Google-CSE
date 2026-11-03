@@ -60,8 +60,8 @@ Check your edition before deploying!
 
 **1. Clone this repository**
 ```bash
-git clone https://github.com/yourusername/google-cse-key-service.git
-cd google-cse-key-service
+git clone https://github.com/pandit-psw/Google-CSE.git
+cd Google-CSE
 ```
 
 **2. Test locally (5 minutes)**
@@ -253,8 +253,8 @@ google-cse-key-service/
 ### Step 2: Clone & Test Locally
 
 ```bash
-git clone https://github.com/yourusername/google-cse-key-service.git
-cd google-cse-key-service
+git clone https://github.com/pandit-psw/Google-CSE.git
+cd Google-CSE
 ./scripts/setup-local.sh
 npm start
 ```
@@ -433,6 +433,8 @@ For detailed documentation, see the [docs/](./docs/) directory.
 
 **Made with ❤️ by the open-source community**
 
-[⭐ Star on GitHub](https://github.com/yourusername/google-cse-key-service) | [📖 Documentation](./INDEX.md) | [🐛 Report Bug](https://github.com/yourusername/google-cse-key-service/issues)
+**Built with assistance from Claude Code (Anthropic)**
+
+[⭐ Star on GitHub](https://github.com/pandit-psw/Google-CSE) | [📖 Documentation](./docs/) | [🐛 Report Bug](https://github.com/pandit-psw/Google-CSE/issues)
 
 </div>
