@@ -364,10 +364,10 @@ This software is provided "as is" without warranty of any kind. The authors are 
 
 ## 📞 Support & Community
 
-- 📖 **Documentation:** Start with [QUICKSTART.md](./QUICKSTART.md)
+- 📖 **Documentation:** Start with [QUICKSTART.md](./docs/QUICKSTART.md)
 - 🐛 **Issues:** Report bugs via GitHub Issues
 - 💬 **Discussions:** Use GitHub Discussions for questions
-- 🔧 **Troubleshooting:** Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+- 🔧 **Troubleshooting:** Check [TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md)
 
 ---
 
